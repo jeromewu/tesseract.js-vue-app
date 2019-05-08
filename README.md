@@ -1,4 +1,6 @@
-# tesseract-app
+# tesseract-vue-app
+
+This app is demo how to use tesseract.js in vue.js.
 
 ## Project setup
 ```

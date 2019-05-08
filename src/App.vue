@@ -1,17 +1,25 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <button v-on:click="recognize">recognize</button>
+    <img id="text-img" alt="Vue logo" src="./assets/testocr.png">
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Tesseract from 'tesseract.js';
 
 export default {
   name: 'app',
-  components: {
-    HelloWorld
+  methods: {
+    recognize() {
+      const img = document.getElementById('text-img');
+      console.log(img);
+      Tesseract
+        .recognize(img)
+        .then(result => {
+          console.log(result);
+        });
+    }
   }
 }
 </script>
