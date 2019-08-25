@@ -6,7 +6,9 @@
 </template>
 
 <script>
-import Tesseract from 'tesseract.js';
+/* eslint-disable */
+import { TesseractWorker, PSM, OEM } from 'tesseract.js';
+const worker = new TesseractWorker();
 
 export default {
   name: 'app',
@@ -14,8 +16,11 @@ export default {
     recognize() {
       const img = document.getElementById('text-img');
       console.log(img);
-      Tesseract
-        .recognize(img)
+      worker
+        .recognize(img, 'eng', {
+          tessedit_ocr_engine_mode: OEM.LSTM_ONLY,
+          tessedit_pageseg_mode: PSM.SINGLE_BLOCK,
+        })
         .then(result => {
           console.log(result);
         });
